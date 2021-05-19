@@ -13,8 +13,8 @@ async function app (state,update,view){
         console.log(title)
         printTable(table)
     //from inquirer
-        const {leftValue,leftUnit,rightUnit} = await inputAndListForm(model)
-        const updatedModel = update(leftValue,leftUnit,rightUnit,model)
+        const {isSource,Value,Unit1,Unit2} = await inputAndListForm(model)
+        const updatedModel = update(isSource,Value,Unit1,Unit2,model)
         state = {
          ...state,
         model: updatedModel,

@@ -2,36 +2,51 @@
 
 //the code around tipValue is to avoid big decimal numbers and round up to two
 
-function tempConvert(leftVal,leftU,rightU){
-    if (leftU === 'Celsius' && rightU === 'Fahrenheit'){
-        return (1.8*leftVal + 32)
+function tempConvert(value,Unit1,Unit2){
+    if (Unit1 === 'Celsius' && Unit2 === 'Fahrenheit'){
+        return (1.8*value + 32)
     }
-    else if (leftU === 'Celsius' && rightU === 'Kelvin'){
-        return (273.15 + leftVal)
+    else if (Unit1 === 'Celsius' && Unit2 === 'Kelvin'){
+        return (273.15 + value)
     }
-    else if (leftU === 'Fahrenheit' && rightU === 'Kelvin'){
-        return (((leftVal-32)/1.8) + 273.15)
+    else if (Unit1 === 'Fahrenheit' && Unit2 === 'Kelvin'){
+        return (((value-32)/1.8) + 273.15)
     }
-    else if (leftU === 'Kelvin' && rightU === 'Fahrenheit'){
-        return (1.8*(leftVal-273))+32
+    else if (Unit1 === 'Fahrenheit' && Unit2 === 'Celsius'){
+        return ((value-32)/1.8)
     }
-    else if (leftU === 'Kelvin' && rightU === 'Celsius'){
-        return (leftVal-273.15)
+    else if (Unit1 === 'Kelvin' && Unit2 === 'Fahrenheit'){
+        return (1.8*(value-273))+32
+    }
+    else if (Unit1 === 'Kelvin' && Unit2 === 'Celsius'){
+        return (value-273.15)
     }
 }
 
 //'Celsius','Fahrenheit','Kelvin'
 
-function update(leftVal, leftU, rightU, model){
+function update(source, value, Unit1, Unit2, model){
     //actual:
-    return {
+    if (source === 'yes'){
+    return{
         ...model,
-        leftValue: leftVal,
-        leftUnit: leftU,
-        rightValue: tempConvert(leftVal,leftU,rightU),
-        rightUnit: rightU
-    } 
-}
+        leftValue: value,
+        leftUnit: Unit1,
+        rightValue: tempConvert(value,Unit1,Unit2),
+        rightUnit: Unit2}
+        
+    }
+    else if (source === 'no'){
+        return{
+        ...model,
+        leftValue: tempConvert(value,Unit1,Unit2),
+        leftUnit: Unit2,
+        rightValue: value,
+        rightUnit: Unit1
+        }
+    }
+} 
+
 
 
 module.exports = {
