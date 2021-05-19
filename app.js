@@ -1,26 +1,35 @@
-const{getTitle} = require('./view')
+
 const{inputAndListForm} = require('./view')
 const {printTable} = require('console-table-printer')
+const update = require('./update')
 
 //Impure
 async function app (state,update,view){
-    const{model,currentView} = state
-    const{title,table} = currentView
+    while (true){
+        const{model,currentView} = state
+        const{title,table} = currentView
     //input output
-    console.clear
-    console.log(title)
-    printTable(table)
+        console.clear
+        console.log(title)
+        printTable(table)
     //from inquirer
-    const {isSource, leftValue,leftUnit,rightUnit} = await inputAndListForm(model)
-    console.log(isSource,leftValue,leftUnit,rightUnit)
-}
+        const {leftValue,leftUnit,rightUnit} = await inputAndListForm(model)
+        const updatedModel = update(leftValue,leftUnit,rightUnit,model)
+        state = {
+         ...state,
+        model: updatedModel,
+        currentView: view(updatedModel)
+    }
+    }
+} 
 
 module.exports = {
     app
 }
 
 
-/*const {inputForm} = require('./view')
+/* 
+const {inputForm} = require('./view')
 const {printTable} = require('console-table-printer')
 
 //Impure
