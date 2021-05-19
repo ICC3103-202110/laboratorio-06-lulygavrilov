@@ -2,7 +2,7 @@ const figlet = require('figlet')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 
-//Everything functional
+//Everything functional; no change in global variables
 
 function getTitle(){
     return chalk.magenta(
@@ -13,19 +13,56 @@ function getTitle(){
     )
 }
 
-module.exports = {
-    getTitle
-}
-/*
 function getTable(model){
-    const {billAmount} = model
-    const {percentage} = model
-    const {tip} = model
-    const{total} = model
+    const {leftValue} = model
+    const {leftUnit} = model
+    const {rightValue} = model
+    const{rightUnit} = model
     return [
-        {'Bill Amount': '$'+billAmount,'Tip (%)':percentage+'%','Tip':'$'+tip,'Total':'$'+total}
+        {'leftValue': leftValue,'leftUnit':leftUnit,
+        'rightValue': rightValue,'rightUnit': rightUnit}
     ]
 }
+
+function inputAndListForm(model){
+    const {leftValue} = model
+    const{rightUnit} = model
+    return inquirer.prompt([
+        { type: 'input',
+        name: 'isSource',
+        message: 'Left temperature is source?',
+        default: 'Y/n'},
+        { type: 'input',
+        name: 'leftValue',
+        message: 'Temperature value to convert?',
+        default: leftValue},
+        {type: 'list',
+        name:'leftUnit',
+        message: 'From?',
+        choices: ['Celsius','Fahrenheit','Kelvin'],
+        default: '(Use arrow keys)'},
+        {type: 'list',
+        name:'rightUnit',
+        message: 'To?',
+        choices: ['Celsius','Fahrenheit','Kelvin'],
+        default: rightUnit}
+    ])
+}
+
+//The Actual console view
+function view(model){
+    return {
+        title: getTitle(),
+        table: getTable(model)
+    }
+}
+
+module.exports = {
+    view,
+    inputAndListForm,
+
+}
+/*
 
 function inputForm(model){
     const {billAmount} = model

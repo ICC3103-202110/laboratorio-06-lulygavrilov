@@ -1,11 +1,11 @@
 const {initModel} = require('./model')
 const {app} = require('./app')
 //const {update} = require('./update')
-//const {view} = require('./view')
+const {view} = require('./view')
 
 const state = {
     model: initModel,
-    //currentView: view(initModel)
+    currentView: view(initModel)
 }
 
-app(state, true, true)
+app(state, true, view)

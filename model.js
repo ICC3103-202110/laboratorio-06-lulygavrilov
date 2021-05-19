@@ -1,13 +1,12 @@
 //initial model for default
-/*
+
 initModel = {
-    billAmount: 1000,
-    percentage: 10,
-    tip: 100,
-    total: 1100
+    leftValue: 0,
+    leftUnit: 'Celsius',
+    rightValue: 32,
+    rightUnit: 'Fahrenheit'
 }
 
 module.exports = {
     initModel
 }
-*/
