@@ -31,11 +31,23 @@ function inputAndListForm(model){
         { type: 'input',
         name: 'isSource',
         message: 'Left temperature is source?',
-        default: 'Y/n'},
+        default: 'Y/n',
+        validate: function(value){
+            if(isNaN(value) === false ){
+                return `Please enter yes or no!`
+            } else {
+                return true}}
+        },
         { type: 'input',
         name: 'Value',
         message: 'Temperature value to convert?',
-        default: '(number)'},
+        default: '(number)',
+        validate: function(value){
+            if(isNaN(value) === true ){
+                return `Please enter a number!`
+            } else {
+                return true}}
+        },
         {type: 'list',
         name:'Unit1',
         message: 'From?',
