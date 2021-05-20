@@ -21,13 +21,16 @@ function tempConvert(value,Unit1,Unit2){
     else if (Unit1 === 'Kelvin' && Unit2 === 'Celsius'){
         return (value-273.15)
     }
+    else{
+        return true
+    }
 }
 
 //'Celsius','Fahrenheit','Kelvin'
 
 function update(source, value, Unit1, Unit2, model){
     //actual:
-    if (source === 'yes'){
+    if (source.toLowerCase() === 'yes'){
     return{
         ...model,
         leftValue: value,
@@ -36,7 +39,7 @@ function update(source, value, Unit1, Unit2, model){
         rightUnit: Unit2}
         
     }
-    else if (source === 'no'){
+    else if (source.toLowerCase() === 'no'){
         return{
         ...model,
         leftValue: tempConvert(value,Unit1,Unit2),
