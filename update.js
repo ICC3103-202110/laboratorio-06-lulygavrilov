@@ -22,7 +22,7 @@ function tempConvert(value,Unit1,Unit2){
         return (value-273.15)
     }
     else{
-        return true
+        return value
     }
 }
 
