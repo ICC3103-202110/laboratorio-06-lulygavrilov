@@ -41,7 +41,7 @@ function inputAndListForm(model){
         { type: 'input',
         name: 'Value',
         message: 'Temperature value to convert?',
-        default: '(number)',
+        default: 'number',
         validate: function(value){
             if(isNaN(value) === true ){
                 return `Please enter a number!`

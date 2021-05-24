@@ -1,25 +1,22 @@
 
-
-//the code around tipValue is to avoid big decimal numbers and round up to two
-
 function tempConvert(value,Unit1,Unit2){
     if (Unit1 === 'Celsius' && Unit2 === 'Fahrenheit'){
-        return (1.8*value + 32)
+        return ((1.8*+value) + 32)
     }
     else if (Unit1 === 'Celsius' && Unit2 === 'Kelvin'){
-        return (273.15 + value)
+        return (273.15 + +value)
     }
     else if (Unit1 === 'Fahrenheit' && Unit2 === 'Kelvin'){
-        return (((value-32)/1.8) + 273.15)
+        return (((+value-32)/1.8) + 273.15)
     }
     else if (Unit1 === 'Fahrenheit' && Unit2 === 'Celsius'){
-        return ((value-32)/1.8)
+        return ((+value-32)/1.8)
     }
     else if (Unit1 === 'Kelvin' && Unit2 === 'Fahrenheit'){
-        return (1.8*(value-273))+32
+        return (1.8*(+value-273))+32
     }
     else if (Unit1 === 'Kelvin' && Unit2 === 'Celsius'){
-        return (value-273.15)
+        return (+value-273.15)
     }
     else{
         return value
