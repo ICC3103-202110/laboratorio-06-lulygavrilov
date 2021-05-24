@@ -13,7 +13,7 @@ function tempConvert(value,Unit1,Unit2){
         return ((+value-32)/1.8)
     }
     else if (Unit1 === 'Kelvin' && Unit2 === 'Fahrenheit'){
-        return (1.8*(+value-273))+32
+        return (1.8*(+value-273.15))+32
     }
     else if (Unit1 === 'Kelvin' && Unit2 === 'Celsius'){
         return (+value-273.15)
